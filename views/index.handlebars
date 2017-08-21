@@ -1,0 +1,48 @@
+<div class="container">
+<div class="burger hero">
+  <div class="burger-image">
+    <h1 class="burger-title-first">Devoured</h1>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/b/b8/Big_Mac_hamburger_with_clear_background.png" width="30%">
+  </div>
+    
+    <h1 class="burger-title-last">Burger</h1>
+</div>  
+
+<div class="row">
+  <div class="col-md-4">
+    <div id="burgers">
+      <h3>Burgers I Want to Try:</h3>
+      {{#each Burgers}}
+      {{#unless this.devoured}}
+        <h4 class="burger-name">{{this.id}}. {{this.burger_name}}</h4>
+        <form action="/{{this.id}}" method="POST">
+          <input type="hidden" name="devoured" value="true">
+          <button type="submit" id="devour-button" name="devour-button">Devour It</button>
+        </form>
+      {{/unless}}
+      {{/each}}
+    </div>
+  </div>
+
+  <div class="col-md-4">
+    <div id="burgers">
+      <h3>Burgers I've Devoured:</h3>
+      {{#each Burgers}}
+        {{#if this.devoured}}
+           <h4 class="burger-name">{{this.id}}. {{this.burger_name}}</h4>
+        {{/if}}
+      {{/each}}
+    </div>
+  </div>
+
+  <div class="col-md-4">
+  <h3>Find a Burger:</h3>
+    <form class="burger-form" action="/" method="POST">
+      <div class="form-group">
+        <label for="burger-input">Enter the burger you'd like to try here:</label>
+        <input type="text" class="form-control" id="burger-input" name="burger_name" placeholder="Enter burger name here">
+      </div>
+      <button type="submit" id="submit-burger" name="submit-burger">Add Burger</button>
+    </form> 
+    </div> 
+</div>  
