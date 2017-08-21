@@ -1,42 +1,37 @@
 <div class="container">
 <div class="burger hero">
   <div class="burger-image">
-    <h1 class="burger-title-first">Devoured</h1>
-    <img src="https://upload.wikimedia.org/wikipedia/commons/b/b8/Big_Mac_hamburger_with_clear_background.png" width="30%">
+    <h1 class="burger-title-first">Boots</h1>
+    <img src="https://www.lucchese.com/media/cache/24/bd/24bdf81e45bd58ee063abb8d4f8ab59a.jpg" width="100%">
   </div>
     
-    <h1 class="burger-title-last">Burger</h1>
+    <h1 class="burger-title-last">For Less</h1>
 </div>  
 
 <div class="row">
-  <div class="col-md-4">
-    <div id="burgers">
-      <h3>Burgers I Want to Try:</h3>
-      {{#each Burgers}}
-      {{#unless this.devoured}}
-        <h4 class="burger-name">{{this.id}}. {{this.burger_name}}</h4>
-        <form action="/{{this.id}}" method="POST">
-          <input type="hidden" name="devoured" value="true">
-          <button type="submit" id="devour-button" name="devour-button">Devour It</button>
-        </form>
-      {{/unless}}
-      {{/each}}
+  <div class="col-md-8">
+    {{#each boots}}
+    <div class="row">
+      <div class="col-md-4">
+        <img src={{data.image}}>
+      </div>
+        <div class="col-md-8">
+          <div id="boots">
+              <h4 class="boots-name">{{data.title}}</h4>
+              <p>{{data.link}}</p>
+              <p>{{data.price}}</p>
+              {{!-- <form action="/{{this.id}}" method="POST">
+                <input type="hidden" name="devoured" value="true">
+                <button type="submit" id="devour-button" name="devour-button">Devour It</button>
+              </form> --}}
+          </div>
+      </div>
     </div>
+  {{/each}}
   </div>
 
   <div class="col-md-4">
-    <div id="burgers">
-      <h3>Burgers I've Devoured:</h3>
-      {{#each Burgers}}
-        {{#if this.devoured}}
-           <h4 class="burger-name">{{this.id}}. {{this.burger_name}}</h4>
-        {{/if}}
-      {{/each}}
-    </div>
-  </div>
-
-  <div class="col-md-4">
-  <h3>Find a Burger:</h3>
+  <h3>Comment on your favorites:</h3>
     <form class="burger-form" action="/" method="POST">
       <div class="form-group">
         <label for="burger-input">Enter the burger you'd like to try here:</label>

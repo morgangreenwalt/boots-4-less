@@ -40,6 +40,17 @@ db.on("error", function(error) {
     console.log("Mongoose Error: ", error);
 });
 
+app.get("/", function(req, res) {
+    Boot.find({}, function(error, doc) {
+        if (error) {
+            res.send(error);
+        } else {
+            res.send(doc);
+            // res.render("index");
+        }
+    });
+});
+
 app.get("/scrape", function(req, res) {
     request("https://www.ebay.com/sch/i.html?_from=R40&_trksid=p2380057.m570.l1313.TR11.TRC1.A0.H0.Xlucchese+womens.TRS0&_nkw=lucchese+womens&_sacat=0", function(error, response, html) {
 
@@ -71,6 +82,46 @@ app.get("/scrape", function(req, res) {
         console.log(results);
     });
     res.send("Scrape Complete");
+});
+
+app.get("/boots", function(req, res) {
+    Boot.find({}, function(error, doc) {
+
+        if (error) {
+            res.send(error);
+        } else {
+            res.send(doc);
+        }
+    });
+});
+
+app.get("/boots/:id", function(req, res) {
+    Boot.findById(req.params.id).populate("comments").exec(function(error, doc) {
+        if (error) {
+            res.send(error);
+        } else {
+            res.send(doc);
+        }
+    });
+});
+
+app.post("/comments/:id", function(req, res) {
+
+    var newComment = new Comment(req.body);
+    newComment.save(function(error, doc) {
+        if (error) {
+            res.send(error);
+        } else {
+            Boot.findByIdAndUpdate(req.params.id, { $set: { "comments": doc._id } }, { new: true }, function(err, newdoc) {
+                if (err) {
+                    res.send(err);
+                } else {
+                    res.send(newdoc);
+                }
+            });
+        }
+    });
+
 });
 
 // Once logged in to the db through mongoose & on port, log a success message

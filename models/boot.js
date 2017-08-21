@@ -4,7 +4,8 @@ var Schema = mongoose.Schema;
 var BootSchema = new Schema({
     title: {
         type: String,
-        required: true
+        required: true,
+        trim: true
     },
     link: {
         type: String,
@@ -12,7 +13,9 @@ var BootSchema = new Schema({
     },
     price: {
         type: String,
-        required: true
+        required: true,
+        trim: true,
+        match: /^\$?[0-9]+\.?[0-9]*$/
     },
     image: {
         type: String,
