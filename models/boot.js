@@ -12,13 +12,23 @@ var BootSchema = new Schema({
         required: true
     },
     price: {
-        type: String,
+        type: Number,
         required: true,
         trim: true,
-        match: /^\$?[0-9]+\.?[0-9]*$/
+        // match: /^\$?[0-9]+\.?[0-9]*$/
     },
     image: {
         type: String,
+        required: true
+    },
+
+    male: {
+        type: Boolean,
+        required: true
+    },
+
+    female: {
+        type: Boolean,
         required: true
     },
 

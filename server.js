@@ -41,12 +41,13 @@ db.on("error", function(error) {
 });
 
 app.get("/", function(req, res) {
-    Boot.find({}, function(error, doc) {
+    Boot.find({}, function(error, docs) {
         if (error) {
             res.send(error);
         } else {
-            res.send(doc);
-            // res.render("index");
+            // res.send(doc);
+            res.render('index', {
+                "boots" : docs});    
         }
     });
 });
@@ -63,12 +64,16 @@ app.get("/scrape", function(req, res) {
             var title = $(element).find("h3").find("a").text().toLowerCase();
             var image = $(element).find("img").attr("src");
             var price = $(element).find("li").find("span").text();
+            // var bid = $(element).find("li").find("span").find("bold").text();
 
             var newEntry = new Boot({
                 title: title,
                 link: link,
                 image: image,
-                price: price
+                price: price,
+                // bid: bid,
+                female: true,
+                male: false
             });
 
             newEntry.save(function(error, doc) {
@@ -81,6 +86,40 @@ app.get("/scrape", function(req, res) {
         });
         console.log(results);
     });
+
+    request("https://www.ebay.com/sch/i.html?_from=R40&_trksid=p2380057.m570.l1313.TR11.TRC1.A0.H0.Xlucchese+mens.TRS0&_nkw=lucchese+mens&_sacat=0", function(error, response, html) {
+        
+                var $ = cheerio.load(html);
+                var results = [];
+        
+                $("div.itmcd").each(function(i, element) {
+        
+                    var link = $(element).find("a").attr("href");
+                    var title = $(element).find("h3").find("a").text().toLowerCase();
+                    var image = $(element).find("a").find("img").attr("src");
+                    // var bid = $(element).find("li").find("gvformat").text();
+                    var price = $(element).find("timeLeftInfo").find("span").find("amt").text();
+        
+                    var newEntry = new Boot({
+                        title: title,
+                        link: link,
+                        image: image,
+                        price: price,
+                        // bid: bid,
+                        male: true, 
+                        female: false
+                    });
+        
+                    newEntry.save(function(error, doc) {
+                        if (error) {
+                            console.log(error);
+                        } else {
+                            console.log(doc);
+                        }
+                    });
+                });
+                console.log(results);
+            });
     res.send("Scrape Complete");
 });
 
@@ -106,7 +145,6 @@ app.get("/boots/:id", function(req, res) {
 });
 
 app.post("/comments/:id", function(req, res) {
-
     var newComment = new Comment(req.body);
     newComment.save(function(error, doc) {
         if (error) {
@@ -121,7 +159,6 @@ app.post("/comments/:id", function(req, res) {
             });
         }
     });
-
 });
 
 // Once logged in to the db through mongoose & on port, log a success message
