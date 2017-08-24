@@ -10,6 +10,24 @@
 
 <div class="row">
   <div class="col-md-8">
+    <div class="option-toggle">
+        <div class="panel panel-default">
+          <div class="panel-heading">Filter Options</div>
+            <div class="panel-body">
+                <div class="form-group filter-options">
+                  <button type="button" class="btn btn-secondary" name="women" id="filter">Women's</button>
+                  <button type="button" class="btn btn-secondary filter" name="men" id="filter">Men's</button>
+                </div>
+                <div class="form-group">
+                  <label for="burger-input">Shoe Size:</label>
+                  <input type="text" class="form-control size-options" id="size-options" name="size-options" placeholder="Enter Size Here">
+                </div>
+                <button type="submit" id="filter-search" name="filter-search">Search</button>
+            </div>
+      </div>
+      {{!-- <form class="burger-form" action="/" method="POST">
+      </form>  --}}
+    </div>
     {{#each boots}}
     <div class="row">
       <div class="col-md-4">
@@ -20,11 +38,6 @@
               <h4 class="boots-name">{{this.title}}</h4>
               <a href="{{this.link}}" target="_blank"><p>View More</p></a>
               <p>Price: {{this.price}}</p>
-              {{!-- <p>Current Bids: {{this.bid}}</p> --}}
-              {{!-- <form action="/{{this.id}}" method="POST">
-                <input type="hidden" name="devoured" value="true">
-                <button type="submit" id="devour-button" name="devour-button">Devour It</button>
-              </form> --}}
           </div>
       </div>
     </div>
@@ -35,8 +48,7 @@
   <h3>Comment on your favorites:</h3>
     <form class="burger-form" action="/" method="POST">
       <div class="form-group">
-        <label for="burger-input">Enter the burger you'd like to try here:</label>
-        <input type="text" class="form-control" id="burger-input" name="burger_name" placeholder="Enter burger name here">
+        <input type="text" class="form-control" id="burger-input" name="size" placeholder="Enter Size Here">
       </div>
       <button type="submit" id="submit-burger" name="submit-burger">Add Burger</button>
     </form> 

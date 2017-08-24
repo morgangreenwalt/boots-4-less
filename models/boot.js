@@ -12,7 +12,7 @@ var BootSchema = new Schema({
         required: true
     },
     price: {
-        type: Number,
+        type: String,
         required: true,
         trim: true,
         // match: /^\$?[0-9]+\.?[0-9]*$/
@@ -31,6 +31,11 @@ var BootSchema = new Schema({
         type: Boolean,
         required: true
     },
+
+    size: [{
+        type: Schema.Types.ObjectId,
+        ref: "Size"
+    }],
 
     comments: [{
         type: Schema.Types.ObjectId,
