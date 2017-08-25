@@ -4,6 +4,7 @@
     <h1 class="boots-title">Boots For Less</h1>
     <img src="https://www.lucchese.com/media/cache/24/bd/24bdf81e45bd58ee063abb8d4f8ab59a.jpg" width="100%">
   </div>
+  {{> nav}}
 </div>  
 
 <div class="row">
@@ -28,46 +29,29 @@
                         <input type="text" class="form-control size-options" id="size-options" name="size" placeholder="Enter Size Here">
                       </div>
                     </div>
-                    <button type="submit" class="btn btn-info" id="filter-search" name="filter-search">Search</button>
-                 </form> 
-                 <div class="reset">
-                 <form action="/reset" method="POST">
-                      <button type="submit" id="reset-search" class="btn btn-danger" name="reset-search">Reset</button>
-                    </form>
-                 </div>
+                    <button type="submit" class="btn btn-secondary" id="filter-search" name="filter-search">Search</button>
+                </form> 
             </div>
-      </div>
+        </div>
     </div>
      {{#each boots}}
     <div class="row">
       <div class="col-md-4">
-        <a href="{{this.link}}" target="_blank"><img src="{{this.image}}" width="100%"></a>
+        <a href="{{this.link}}" target="_blank"><img class="img-responsive" src="{{this.image}}" alt="https://www.lucchese.com/media/cache/3a/33/3a33ca3714c65fd38e3e9b306fb44292.jpg" width="100%"></a>
       </div>
         <div class="col-md-8">
           <div id="boots">
             <form action="/" method="GET">
-              <a class="sendTitle" href="/title/{{this.id}}"><h4 class="boots-name">{{this.title}}</h4></a>
+              <h4 class="boots-name">{{this.title}}</h4>
             </form>
               <a href="{{this.link}}" target="_blank"><p>View More</p></a>
               <p>Price: {{this.price}}</p>
-              <a href = "mailto:abc@example.com?Subject=I%love%Luccheses!&body={{this.link}}">Email</a>
               <form action="/watch/{{this.id}}" method="POST">
-                <button type="submit" id="watch" class="{{this.watch}}" name="{{this.id}}">Watch</button>
+                <button type="submit" id="watch" class="btn btn-secondary" name="{{this.id}}">Watch</button>
               </form>
           </div>
       </div>
     </div>
   {{/each}} 
   </div>
-
-  {{!-- <div class="col-md-4">
-    <h3>Comment on your favorites:</h3>
-      <form action="/comments/{{data.id}}" method="POST">
-        <div class="form-group">
-          <h4 id="titleinput" name="titleinput">{{data.title}}</h4>
-          <input type="text" class="form-control" id="bodyinput" name="bodyinput" placeholder="Enter Comment Here">
-        </div>
-        <button type="submit" id="submit-comment" name="submit-comment">Add Comment</button>
-      </form>  
-  </div>  --}}
 </div>  
