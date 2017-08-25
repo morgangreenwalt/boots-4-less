@@ -21,21 +21,16 @@ var BootSchema = new Schema({
         type: String,
         required: true
     },
-
-    male: {
-        type: Boolean,
+    gender: {
+        type: String,
         required: true
     },
 
-    female: {
+    watch: {
         type: Boolean,
-        required: true
+        required: true,
+        default: false
     },
-
-    size: [{
-        type: Schema.Types.ObjectId,
-        ref: "Size"
-    }],
 
     comments: [{
         type: Schema.Types.ObjectId,
