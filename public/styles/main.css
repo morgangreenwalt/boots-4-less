@@ -1,0 +1,15 @@
+.boots {
+    position: relative;
+}
+
+.boots-title {
+    position: absolute;
+    top: 125px;
+    left: 50px;
+    font-size: 75px;
+    color: #fff;
+}
+
+.panel {
+    margin-top: 20px;
+}

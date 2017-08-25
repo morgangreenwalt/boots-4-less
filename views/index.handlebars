@@ -1,22 +1,20 @@
 <div class="container">
-<div class="burger hero">
-  <div class="burger-image">
-    <h1 class="burger-title-first">Boots</h1>
+<div class="hero">
+  <div class="boots">
+    <h1 class="boots-title">Boots For Less</h1>
     <img src="https://www.lucchese.com/media/cache/24/bd/24bdf81e45bd58ee063abb8d4f8ab59a.jpg" width="100%">
   </div>
-    
-    <h1 class="burger-title-last">For Less</h1>
 </div>  
 
 <div class="row">
-  <div class="col-md-8">
+  <div class="col-md-12">
     <div class="option-toggle">
         <div class="panel panel-default">
           <div class="panel-heading">Filter Options</div>
             <div class="panel-body">
                  <form action="/scrape" method="POST"> 
                     <div class="form-group row">
-                      <label for="gender" class="col-sm-2 col-form-label">Gender</label>
+                      <label for="gender" class="col-sm-2 col-form-label">Gender:</label>
                       <div class="col-sm-10">
                         <select name="gender">
                         <option value="women" name="women">Women</option>
@@ -30,13 +28,13 @@
                         <input type="text" class="form-control size-options" id="size-options" name="size" placeholder="Enter Size Here">
                       </div>
                     </div>
-                    <button type="submit" id="filter-search" name="filter-search">Search</button>
-
+                    <button type="submit" class="btn btn-info" id="filter-search" name="filter-search">Search</button>
                  </form> 
-
+                 <div class="reset">
                  <form action="/reset" method="POST">
-                      <button type="submit" id="reset-search" name="reset-search">Reset</button>
+                      <button type="submit" id="reset-search" class="btn btn-danger" name="reset-search">Reset</button>
                     </form>
+                 </div>
             </div>
       </div>
     </div>
