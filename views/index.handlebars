@@ -34,9 +34,9 @@
 
                  </form> 
 
-                 {{!-- <form action="/reset" method="DELETE">
+                 <form action="/reset" method="POST">
                       <button type="submit" id="reset-search" name="reset-search">Reset</button>
-                    </form> --}}
+                    </form>
             </div>
       </div>
     </div>
@@ -54,7 +54,7 @@
               <p>Price: {{this.price}}</p>
               <a href = "mailto:abc@example.com?Subject=I%love%Luccheses!&body={{this.link}}">Email</a>
               <form action="/watch/{{this.id}}" method="POST">
-                <button type="submit" id="watch" name="watch">Watch</button>
+                <button type="submit" id="watch" class="{{this.watch}}" name="{{this.id}}">Watch</button>
               </form>
           </div>
       </div>

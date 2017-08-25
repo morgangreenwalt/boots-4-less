@@ -8,23 +8,10 @@ var cheerio = require("cheerio");
 
 module.exports = function(app) {
 
-app.get("/", function(req, res) {
-    Boot.find({}, function(error, docs) {
-        if (error) {
-            res.send(error);
-        } else {
-            // res.send(doc);
-            res.render('index', {
-                "boots" : docs});    
-        }
-    });
-});
-
+// Route to scrape Ebay.com & save data to MongoDB
 app.post("/scrape", function(req, res) {
-
     var gender = req.body.gender;
     var size = req.body.size;
-
     var queryUrl;
     if (gender === "men") {
         queryUrl = "https://www.ebay.com/sch/i.html?_sacat=0&_nkw=mens+lucchese+"+size+"&_frs=1"
@@ -59,28 +46,31 @@ app.post("/scrape", function(req, res) {
     });
 });
 
-app.delete("/reset", function(req, res) {
-    Boot.remove({}, function(err, row) {
-        if (err) {
-            console.log("Collection couldn't be removed" + err);
-            return;
-        }
-        console.log("collection removed");
-        res.redirect("/");
-      }) 
-});
-
-app.get("/boots", function(req, res) {
-    Boot.find({}, function(error, doc) {
-
+// Route to display data from Index.handlebars
+app.get("/", function(req, res) {
+    Boot.find({}, function(error, docs) {
         if (error) {
             res.send(error);
         } else {
-            res.send(doc);
+            res.render('index', {
+                "boots" : docs});    
         }
     });
 });
 
+// Route to reset filter & db collection
+app.post("/reset", function(req, res) {
+    Boot.remove(function(err, p){
+        if(err){ 
+            throw err;
+        } else{
+            console.log('No Of Documents deleted:' + p);
+            res.redirect("/");
+        }
+    });
+});
+
+// Route to view all comments
 app.get("/comments", function(req, res) {
     Comments.find({}, function(error, doc) {
         if (error) {
@@ -91,6 +81,7 @@ app.get("/comments", function(req, res) {
     });
 });
 
+// Route to view a specific boot JSON
 app.get("/boots/:id", function(req, res) {
     Boot.findOne({_id: req.params.id}).populate("comments").exec(function(error, doc) {
         if (error) {
@@ -102,41 +93,37 @@ app.get("/boots/:id", function(req, res) {
     });
 });
 
-
+// Route to update a boot to "watched"
 app.post("/watch/:id", function(req, res) {
-    console.log(req.params.id)
     Boot.update({ _id: req.params.id }, { $set: { watch: true }}, function(err, data) {
     if (err) {
         throw err;
     } else {
-        res.redirect("/");
+        res.redirect("/watching");
     }
     });
 });
 
-app.post("/comments/:id", function(req, res) {
-    // Use our Note model to make a new note from the req.body
-    var newComments = new Comments(req.body);
-    // Save the new note to mongoose
-    newComments.save(function(error, doc) {
-        // Send any errors to the browser
+// Route to display watched boots
+app.get("/watching", function(req, res) {
+    Boot.find({watch: true}, function(error, docs) {
         if (error) {
             res.send(error);
+        } else {
+            res.render('watchingBoots', {
+                "boots" : docs});    
         }
-        // Otherwise
-        else {
-            // Find our user and push the new note id into the User's notes array
-            Boot.findOneAndUpdate({}, { $push: { "comments": doc._id } }, { new: true }, function(err, newdoc) {
-                // Send any errors to the browser
-                if (err) {
-                    res.send(err);
-                }
-                // Or send the newdoc to the browser
-                else {
-                    res.send(newdoc);
-                }
-            });
-        }
+    });
+});
+
+// Route to update a boot to "unwatched"
+app.post("/unwatch/:id", function(req, res) {
+    Boot.update({ _id: req.params.id }, { $set: { watch: false }}, function(err, data) {
+    if (err) {
+        throw err;
+    } else {
+        res.redirect("/watching");
+    }
     });
 });
 

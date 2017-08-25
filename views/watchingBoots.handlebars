@@ -1,0 +1,35 @@
+<div class="container">
+<div class="burger hero">
+  <div class="burger-image">
+    <h1 class="burger-title-first">Boots</h1>
+    <img src="https://www.lucchese.com/media/cache/24/bd/24bdf81e45bd58ee063abb8d4f8ab59a.jpg" width="100%">
+  </div>
+    
+    <h1 class="burger-title-last">For Less</h1>
+</div>  
+
+<div class="row">
+  <div class="col-md-12">
+     {{#each boots}}
+     {{#if this.watch}}
+    <div class="row">
+      <div class="col-md-4">
+        <a href="{{this.link}}" target="_blank"><img src="{{this.image}}" width="100%"></a>
+      </div>
+        <div class="col-md-8">
+          <div id="boots">
+              <a class="sendTitle" href="/title/{{this.id}}"><h4 class="boots-name">{{this.title}}</h4></a>
+              <a href="{{this.link}}" target="_blank"><p>View More</p></a>
+              <p>Price: {{this.price}}</p>
+              <a href = "mailto:abc@example.com?Subject=I%love%Luccheses!&body={{this.link}}">Email</a>
+              <h4 class="watching">Watching!</h4>
+              <form action="/unwatch/{{this.id}}" method="POST">
+                <button type="submit" id="unwatch" class="{{this.watch}}" name="{{this.id}}">Unwatch</button>
+              </form>
+          </div>
+      </div>
+    </div>
+    {{/if}}
+  {{/each}} 
+  </div>
+</div>  
