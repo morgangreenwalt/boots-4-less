@@ -10,7 +10,7 @@ var exphbs = require("express-handlebars");
 // Sets up the Express App
 // =============================================================
 var app = express();
-var PORT = process.env.PORT || 5000;
+var PORT = process.env.PORT || 3000;
 
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
@@ -51,6 +51,6 @@ db.on("error", function(error) {
 db.once("open", function() {
     console.log("Mongoose connection successful.");
 });
-app.listen(3000, function() {
-    console.log("App running on port 3000!");
+app.listen(PORT, function() {
+    console.log("App running on port"+PORT+"!");
 });
