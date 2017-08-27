@@ -32,7 +32,11 @@ app.use(bodyParser.urlencoded({
 app.use(express.static("public"));
 
 // Database configuration with mongoose
-mongoose.connect("mongodb://localhost/web-scraper");
+// mongoose.connect("mongodb://localhost/web-scraper");
+// var db = mongoose.connection;
+
+// mLab Heroku Connection
+mongoose.connect("mongodb://heroku_wnk6wp68:m9ft3ihfhj39u2106iui1gmsd4@ds161493.mlab.com:61493/heroku_wnk6wp68");
 var db = mongoose.connection;
 
 // Require in routes
