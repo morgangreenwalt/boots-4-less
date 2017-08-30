@@ -1,1 +1,19 @@
 # web-scraper
+
+Bamazon
+-------
+
+An interactive shopping node app where MySQL and Node.JS are used to allow users to purchase items as a customer, view, track and update the product inventory as a manager, and track the total sales by department as an supervisor.
+
+Bamazon uses the inquirer npm library to make user expereince better.
+Other packages used: [mySQL](https://www.npmjs.com/package/mysql), [cli-table2](https://www.npmjs.com/package/cli-table2)
+
+
+Customer View
+-------------
+This allows the user to shop. Select the department you wish to shop and to begin.
+
+
+Manager View
+------------
+This allows the user to manage their Bamazon store. They can view products for sale, products with low inventory, add to inventory and add new products.
