@@ -1,4 +1,4 @@
-Boots 4 Less
+Boots-4-Less
 -------
 
 A web application that pulls in the latest Lucchese Cowboy boots from Ebay and lets users "Watch" products and click through to Ebay to purchase. 
