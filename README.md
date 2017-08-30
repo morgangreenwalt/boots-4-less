@@ -1,19 +1,11 @@
-# web-scraper
-
-Bamazon
+Boots 4 Less
 -------
 
-An interactive shopping node app where MySQL and Node.JS are used to allow users to purchase items as a customer, view, track and update the product inventory as a manager, and track the total sales by department as an supervisor.
+An web application that pulls in the latest Lucchese Cowboy boots from Ebay and lets users "Watch" products and click through to Ebay to purchase. 
 
-Bamazon uses the inquirer npm library to make user expereince better.
-Other packages used: [mySQL](https://www.npmjs.com/package/mysql), [cli-table2](https://www.npmjs.com/package/cli-table2)
-
-
-Customer View
--------------
-This allows the user to shop. Select the department you wish to shop and to begin.
-
-
-Manager View
-------------
-This allows the user to manage their Bamazon store. They can view products for sale, products with low inventory, add to inventory and add new products.
+Technologies used: 
+1. Node.js
+2. Express & Handlebars
+3. Cheerio
+4. MongoDB
+5. Mongoose
