@@ -1,7 +1,7 @@
 Boots 4 Less
 -------
 
-An web application that pulls in the latest Lucchese Cowboy boots from Ebay and lets users "Watch" products and click through to Ebay to purchase. 
+A web application that pulls in the latest Lucchese Cowboy boots from Ebay and lets users "Watch" products and click through to Ebay to purchase. 
 
 Technologies used: 
 1. Node.js
